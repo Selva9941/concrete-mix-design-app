@@ -47,6 +47,7 @@ function setupGlobalUI() {
   applyTheme();
   protectPage();
   requestAnimationFrame(() => document.body.classList.add('page-ready'));
+  setupMobileMenu();
 
   document.querySelectorAll('.btn-back').forEach((btn) => {
     btn.addEventListener('click', goBack);
@@ -61,6 +62,58 @@ function setupGlobalUI() {
 
   const email = sessionStorage.getItem('cmda_user_email') || 'student@demo.com';
   document.querySelectorAll('.user-email').forEach((el) => (el.textContent = email));
+}
+
+function setupMobileMenu() {
+  const sidebar = document.querySelector('.sidebar');
+  const appShell = document.querySelector('.app-shell');
+  if (!sidebar || !appShell) return;
+  if (document.querySelector('.mobile-topbar')) return;
+
+  const activeLink = sidebar.querySelector('.nav-link.active');
+  const defaultTitle = (activeLink ? activeLink.textContent : document.title).trim();
+
+  const topbar = document.createElement('div');
+  topbar.className = 'mobile-topbar';
+  topbar.innerHTML = `
+    <button type="button" class="mobile-menu-toggle" aria-label="Open navigation menu" aria-expanded="false">&#9776;</button>
+    <p class="mobile-topbar-title">${defaultTitle}</p>
+    <span style="width:40px;height:40px;"></span>
+  `;
+
+  const backdrop = document.createElement('div');
+  backdrop.className = 'mobile-menu-backdrop';
+
+  document.body.insertBefore(topbar, appShell);
+  document.body.appendChild(backdrop);
+
+  const toggleBtn = topbar.querySelector('.mobile-menu-toggle');
+  const closeMenu = function () {
+    document.body.classList.remove('nav-open');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+  };
+  const openMenu = function () {
+    document.body.classList.add('nav-open');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+  };
+
+  toggleBtn.addEventListener('click', function () {
+    if (document.body.classList.contains('nav-open')) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  backdrop.addEventListener('click', closeMenu);
+
+  sidebar.querySelectorAll('.nav-link').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth > 991) closeMenu();
+  });
 }
 
 function showLogoutFeedback() {

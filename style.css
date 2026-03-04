@@ -201,6 +201,25 @@ body.login-page .login-wrap::after {
   z-index: 20;
 }
 
+.mobile-topbar {
+  display: none;
+}
+
+.mobile-menu-toggle {
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.mobile-menu-backdrop {
+  display: none;
+}
+
 .header-actions .btn {
   margin-left: 8px;
   transition: transform 180ms ease, box-shadow 180ms ease;
@@ -618,13 +637,80 @@ body.dark-theme .recipe-view {
 
 @media (max-width: 991px) {
   .app-shell {
-    flex-direction: column;
+    display: block;
+    padding-top: 60px;
   }
 
   .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
+    width: min(82vw, 310px);
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1200;
+    transform: translateX(-100%);
+    transition: transform 260ms ease;
+    overflow-y: auto;
+  }
+
+  body.nav-open .sidebar {
+    transform: translateX(0);
+  }
+
+  .mobile-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1250;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: rgba(6, 27, 66, 0.96);
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(8px);
+  }
+
+  .mobile-topbar-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 0;
+    padding-left: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mobile-menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(6, 18, 38, 0.5);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+  }
+
+  body.nav-open .mobile-menu-backdrop {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .main-content {
+    min-width: 0;
+  }
+
+  .top-header {
+    top: 60px;
+    z-index: 1000;
+  }
+
+  .top-header h5 {
+    font-size: 1.05rem;
   }
 
   .header-actions {
@@ -656,6 +742,22 @@ body.dark-theme .recipe-view {
   body.page-bg .content-area {
     margin: 10px;
     padding: 12px;
+  }
+
+  .sidebar .nav-link {
+    padding: 12px 14px;
+    font-size: 0.98rem;
+  }
+
+  .sidebar .nav-link::before {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+
+  .header-actions .btn {
+    padding: 6px 10px;
+    font-size: 0.84rem;
   }
 }
 
