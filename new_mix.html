@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>New Mix Design</title>
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-protected="true" class="page-bg page-newmix">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h4>Concrete Mix App</h4>
+      <nav class="nav flex-column">
+        <a class="nav-link" href="dashboard.html">Dashboard</a>
+        <a class="nav-link active" href="new_mix.html">New Mix Design</a>
+        <a class="nav-link" href="report.html">Report</a>
+        <a class="nav-link" href="saved_designs.html">Saved Designs</a>
+        <a class="nav-link" href="settings.html">Settings</a>
+        <a class="nav-link" href="help.html">Help & Support</a>
+        <a class="nav-link logout-link" href="#">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header d-flex flex-wrap justify-content-between align-items-center">
+        <h5 class="mb-0">New Mix Design</h5>
+        <div class="header-actions">
+          <a class="btn btn-sm btn-primary" href="dashboard.html">Home</a>
+          <a class="btn btn-sm btn-outline-primary" href="index.html">Login</a>
+          <button class="btn btn-sm btn-outline-secondary btn-back">Back</button>
+          <a class="btn btn-sm btn-outline-dark" href="account.html">Account</a>
+        </div>
+      </header>
+
+      <section class="content-area">
+        <form id="mixForm" class="row g-3">
+          <div class="col-12">
+            <div class="section-card card" id="inputPanel">
+              <div class="card-header">Design Inputs & Parameters</div>
+              <div class="card-body row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Design Name</label>
+                  <input id="designName" class="form-control" required placeholder="e.g., Hostel Block M25">
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Concrete Grade</label>
+                  <select id="grade" class="form-select">
+                    <option>M20</option><option>M25</option><option>M30</option><option>M35</option><option>M40</option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Maximum Aggregate Size (mm)</label>
+                  <input id="aggSize" type="number" class="form-control" value="20" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Slump Value (mm)</label>
+                  <input id="slump" type="number" class="form-control" value="100" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Target Water Cement Ratio</label>
+                  <input id="wcr" type="number" step="0.01" class="form-control" value="0.45" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Standard Deviation</label>
+                  <input id="stdDev" type="number" step="0.1" class="form-control" value="4" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Admixture Percentage</label>
+                  <input id="admixturePct" type="number" step="0.1" class="form-control" value="0.8" required>
+                </div>
+                <div class="col-12">
+                  <div class="p-3 rounded border bg-light-subtle">
+                    <h6 class="mb-3">Active Mix Ratio (Manual Adjustment)</h6>
+                    <div class="row g-3 align-items-end">
+                      <div class="col-md-2">
+                        <label class="form-label">Cement Part</label>
+                        <input id="ratio_cement" type="number" step="0.01" class="form-control" value="1">
+                      </div>
+                      <div class="col-md-2">
+                        <label class="form-label">Sand Part</label>
+                        <input id="ratio_sand" type="number" step="0.01" class="form-control" value="1.5">
+                      </div>
+                      <div class="col-md-2">
+                        <label class="form-label">Coarse Part</label>
+                        <input id="ratio_coarse" type="number" step="0.01" class="form-control" value="3">
+                      </div>
+                      <div class="col-md-6">
+                        <small class="text-muted">Selected recipe values appear here. You can adjust manually and preview updates instantly.</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="section-card card">
+              <div class="card-header">Default Mix Recipe</div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <div class="preview-mini-card">
+                      <small>Concrete Grade</small>
+                      <div id="default_grade" class="preview-value">M20</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="preview-mini-card">
+                      <small>Recommended Ratio</small>
+                      <div id="default_ratio" class="preview-value ratio-pill">1 : 1.5 : 3</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="preview-mini-card">
+                      <small>Status</small>
+                      <div class="preview-value text-success">Auto-loaded for selected grade</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="section-card card">
+              <div class="card-header">Recipe Selection Panel</div>
+              <div class="card-body">
+                <div class="row g-3" id="recipeSelectionPanel"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="section-card card" id="mixPreviewPanel">
+              <div class="card-header">Mix Preview Panel</div>
+              <div class="card-body">
+                <div class="row g-3 mb-2">
+                  <div class="col-md-4">
+                    <div class="preview-mini-card">
+                      <small>Concrete Grade</small>
+                      <div id="preview_grade" class="preview-value">M20</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="preview-mini-card">
+                      <small>Suggested Mix Ratio</small>
+                      <div id="preview_ratio" class="preview-value ratio-pill">1 : 1.5 : 3</div>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="preview-mini-card">
+                      <small>Estimated W/C Ratio</small>
+                      <div id="preview_wcr" class="preview-value">0.50</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row g-3 mb-3">
+                  <div class="col-md-3">
+                    <div class="preview-mini-card">
+                      <small>Estimated Cement Quantity per m3</small>
+                      <div id="preview_cement_req" class="preview-value">320 kg</div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="preview-mini-card">
+                      <small>Estimated Water Requirement</small>
+                      <div id="preview_water_req" class="preview-value">160 liters</div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="preview-mini-card">
+                      <small>Estimated Fine Aggregate</small>
+                      <div id="preview_fa_req" class="preview-value">700 kg</div>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="preview-mini-card">
+                      <small>Estimated Coarse Aggregate</small>
+                      <div id="preview_ca_req" class="preview-value">1200 kg</div>
+                    </div>
+                  </div>
+                </div>
+
+                <h6 class="mb-2">Mix Visualization Panel</h6>
+                <div class="material-bars mb-3">
+                  <div class="bar-item">
+                    <div class="bar-label"><span class="material-icon cement">C</span>Cement</div>
+                    <div class="bar-track"><div id="bar_cement" class="bar-fill cement"></div></div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar-label"><span class="material-icon sand">S</span>Sand</div>
+                    <div class="bar-track"><div id="bar_sand" class="bar-fill sand"></div></div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar-label"><span class="material-icon coarse">G</span>Coarse Aggregate</div>
+                    <div class="bar-track"><div id="bar_coarse" class="bar-fill coarse"></div></div>
+                  </div>
+                  <div class="bar-item">
+                    <div class="bar-label"><span class="material-icon water">W</span>Water</div>
+                    <div class="bar-track"><div id="bar_water" class="bar-fill water"></div></div>
+                  </div>
+                </div>
+
+                <div class="recipe-view">
+                  <h6 class="mb-2">Mix Recipe View</h6>
+                  <div id="mixRecipeText" class="mb-0"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="section-card card">
+              <div class="card-header">Concrete Mix Illustration</div>
+              <div class="card-body">
+                <div class="row g-3">
+                  <div class="col-lg-7">
+                    <img class="img-fluid rounded-3 mix-illustration-img" src="assets/images/real/concrete-mixing.jpg" alt="Concrete mix illustration">
+                  </div>
+                  <div class="col-lg-5">
+                    <div class="learning-item mb-3">
+                      <span class="material-icon cement">C</span>
+                      <div><strong>Cement</strong><div class="text-muted small">Binding material that forms paste with water.</div></div>
+                    </div>
+                    <div class="learning-item mb-3">
+                      <span class="material-icon sand">S</span>
+                      <div><strong>Sand</strong><div class="text-muted small">Fine aggregate filling voids and improving finish.</div></div>
+                    </div>
+                    <div class="learning-item mb-3">
+                      <span class="material-icon coarse">A</span>
+                      <div><strong>Aggregate</strong><div class="text-muted small">Coarse skeleton providing bulk and strength.</div></div>
+                    </div>
+                    <div class="learning-item">
+                      <span class="material-icon water">W</span>
+                      <div><strong>Water</strong><div class="text-muted small">Hydrates cement and controls workability.</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="section-card card">
+              <div class="card-header">Concrete Mix Learning Panel</div>
+              <div class="card-body">
+                <div class="row g-3 align-items-center">
+                  <div class="col-md-4">
+                    <img class="img-fluid rounded-3" src="assets/images/real/lab-testing.jpg" alt="Concrete learning panel">
+                  </div>
+                  <div class="col-md-8">
+                    <h6>Understanding Mix Components</h6>
+                    <p class="mb-2 text-muted">A balanced concrete mix needs proper proportioning of cement, fine aggregate, coarse aggregate, water, and admixture. In IS 10262:2019 based design, water-cement ratio and aggregate grading strongly influence strength and durability.</p>
+                    <p class="mb-0 text-muted">Use the recipe panel to start with recommended ratios, then fine-tune based on workability, exposure condition, and material quality.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="section-card card">
+              <div class="card-header">Material Cost</div>
+              <div class="card-body row g-3">
+                <div class="col-md-2"><label class="form-label">Cement (INR/kg)</label><input id="cost_cement" type="number" step="0.01" class="form-control" required></div>
+                <div class="col-md-2"><label class="form-label">Sand (INR/kg)</label><input id="cost_sand" type="number" step="0.01" class="form-control" required></div>
+                <div class="col-md-2"><label class="form-label">Gravel (INR/kg)</label><input id="cost_gravel" type="number" step="0.01" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Admixture (INR/kg)</label><input id="cost_admixture" type="number" step="0.01" class="form-control" required></div>
+                <div class="col-md-3"><label class="form-label">Water (INR/L)</label><input id="cost_water" type="number" step="0.01" class="form-control" required></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 d-flex gap-2 flex-wrap">
+            <button class="btn btn-primary" type="submit">Calculate Mix</button>
+            <button class="btn btn-outline-secondary" id="resetBtn" type="button">Reset</button>
+            <button class="btn btn-outline-success" id="saveDesignBtn" type="button" disabled>Save Design</button>
+            <button class="btn btn-outline-dark" id="openReportBtn" type="button">Open Report</button>
+          </div>
+
+          <div class="col-12">
+            <div class="section-card p-3" id="resultBox">
+              <p class="text-muted mb-0">Results will appear here after calculation.</p>
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#eef5ff"/>
+  <polygon points="60,390 260,180 460,390" fill="#d3a16b"/>
+  <polygon points="340,390 540,155 740,390" fill="#8a99ad"/>
+  <text x="120" y="420" font-family="Arial" font-size="30" fill="#5b3a15">Sand</text>
+  <text x="550" y="420" font-family="Arial" font-size="30" fill="#334155">Aggregate</text>
+  <text x="30" y="55" font-family="Arial" font-size="32" fill="#1f3f7a">Sand and Aggregate Materials</text>
+</svg>

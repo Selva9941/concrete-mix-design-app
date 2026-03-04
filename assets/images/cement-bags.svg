@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#f3f7ff"/>
+  <rect y="390" width="800" height="110" fill="#e4edff"/>
+  <rect x="140" y="180" width="160" height="200" rx="14" fill="#f2d5a7"/>
+  <rect x="320" y="165" width="160" height="215" rx="14" fill="#f2d5a7"/>
+  <rect x="500" y="185" width="160" height="195" rx="14" fill="#f2d5a7"/>
+  <text x="175" y="290" font-family="Arial" font-size="34" fill="#935f17">CEMENT</text>
+  <text x="355" y="285" font-family="Arial" font-size="34" fill="#935f17">CEMENT</text>
+  <text x="535" y="295" font-family="Arial" font-size="34" fill="#935f17">CEMENT</text>
+  <text x="30" y="55" font-family="Arial" font-size="32" fill="#1f3f7a">Cement Bags</text>
+</svg>

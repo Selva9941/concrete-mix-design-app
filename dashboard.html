@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard - Concrete Mix Design App</title>
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-protected="true">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h4>Concrete Mix App</h4>
+      <nav class="nav flex-column">
+        <a class="nav-link active" href="dashboard.html">Dashboard</a>
+        <a class="nav-link" href="new_mix.html">New Mix Design</a>
+        <a class="nav-link" href="report.html">Report</a>
+        <a class="nav-link" href="saved_designs.html">Saved Designs</a>
+        <a class="nav-link" href="settings.html">Settings</a>
+        <a class="nav-link" href="help.html">Help & Support</a>
+        <a class="nav-link logout-link" href="#">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header d-flex flex-wrap justify-content-between align-items-center">
+        <div>
+          <h5 class="mb-0">Dashboard</h5>
+          <small class="text-muted">Welcome, <span class="user-email"></span></small>
+        </div>
+        <div class="header-actions">
+          <a class="btn btn-sm btn-primary" href="dashboard.html">Home</a>
+          <a class="btn btn-sm btn-outline-primary" href="index.html">Login</a>
+          <button class="btn btn-sm btn-outline-secondary btn-back">Back</button>
+          <a class="btn btn-sm btn-outline-dark" href="account.html">Account</a>
+        </div>
+      </header>
+
+      <section class="content-area">
+        <div class="dashboard-hero mb-4">
+          <div class="hero-content">
+            <h2 class="mb-2">Concrete Mix Design System</h2>
+            <p class="mb-0">Smart tool for calculating concrete mix proportions</p>
+          </div>
+        </div>
+
+        <div class="row g-3 mb-4">
+          <div class="col-lg-3 col-md-6">
+            <div class="metric-box dashboard-card">
+              <h6>Total Mix Designs</h6>
+              <h3 id="saved-count">--</h3>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="metric-box dashboard-card">
+              <h6>Recent Mix Design</h6>
+              <h3 id="latest-grade">--</h3>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="metric-box dashboard-card">
+              <h6>Material Cost Summary</h6>
+              <h3 id="latest-cost">--</h3>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="metric-box dashboard-card">
+              <h6>Quick Actions</h6>
+              <div class="d-flex flex-wrap gap-2">
+                <a class="btn btn-sm btn-primary" href="new_mix.html">New</a>
+                <a class="btn btn-sm btn-outline-primary" href="report.html">Report</a>
+                <a class="btn btn-sm btn-outline-secondary" href="saved_designs.html">Saved</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-card card p-4 mb-4">
+          <h5 class="mb-3">Material Overview</h5>
+          <div class="row g-3">
+            <div class="col-md-3 col-6"><div class="material-tile"><span class="material-icon cement">C</span><strong>Cement</strong></div></div>
+            <div class="col-md-3 col-6"><div class="material-tile"><span class="material-icon sand">S</span><strong>Sand</strong></div></div>
+            <div class="col-md-3 col-6"><div class="material-tile"><span class="material-icon coarse">A</span><strong>Aggregate</strong></div></div>
+            <div class="col-md-3 col-6"><div class="material-tile"><span class="material-icon water">W</span><strong>Water</strong></div></div>
+          </div>
+        </div>
+
+        <div class="section-card card p-4">
+          <h5 class="mb-3">Project Snapshot</h5>
+          <div class="row g-3">
+            <div class="col-md-4">
+              <div class="preview-mini-card">
+                <small>Current Focus</small>
+                <div class="preview-value">Mix Optimization</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="preview-mini-card">
+                <small>Quality Check</small>
+                <div class="preview-value">W/C Ratio Review</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="preview-mini-card">
+                <small>Next Step</small>
+                <div class="preview-value">Generate Report</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    (function () {
+      const designs = JSON.parse(localStorage.getItem('cmda_saved_designs') || '[]');
+      const latest = JSON.parse(localStorage.getItem('cmda_current_design') || 'null');
+      document.getElementById('saved-count').textContent = designs.length;
+      document.getElementById('latest-grade').textContent = latest ? latest.grade : '--';
+      document.getElementById('latest-cost').textContent = latest ? `INR ${latest.estimatedCost}` : '--';
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#f2f7ff"/>
+  <rect y="380" width="800" height="120" fill="#e0ebff"/>
+  <rect x="190" y="90" width="150" height="290" rx="12" fill="#d7e3fb" stroke="#8fa9d8" stroke-width="6"/>
+  <rect x="430" y="120" width="180" height="260" rx="12" fill="#d7e3fb" stroke="#8fa9d8" stroke-width="6"/>
+  <rect x="228" y="210" width="75" height="160" fill="#8c9dbb"/>
+  <rect x="480" y="240" width="80" height="130" fill="#8c9dbb"/>
+  <text x="28" y="56" font-family="Arial" font-size="32" fill="#1f3f7a">Laboratory Concrete Testing</text>
+</svg>

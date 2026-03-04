@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#eef5ff"/>
+  <rect y="390" width="800" height="110" fill="#dbe8fb"/>
+  <circle cx="255" cy="325" r="68" fill="#4667a8"/>
+  <circle cx="255" cy="325" r="26" fill="#b7cbf4"/>
+  <rect x="170" y="178" width="225" height="36" rx="8" fill="#6f86b7"/>
+  <polygon points="355,154 495,108 535,208 400,250" fill="#5f7fb7"/>
+  <ellipse cx="470" cy="180" rx="34" ry="22" fill="#91aada"/>
+  <text x="36" y="56" font-family="Arial" font-size="32" fill="#1f3f7a">Concrete Mixing Process</text>
+</svg>

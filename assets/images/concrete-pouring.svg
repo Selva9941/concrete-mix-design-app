@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <rect width="800" height="500" fill="#eef5ff"/>
+  <rect y="385" width="800" height="115" fill="#dbe8fb"/>
+  <rect x="120" y="130" width="340" height="42" rx="10" fill="#5f7fb7"/>
+  <polygon points="430,145 640,190 620,250 400,202" fill="#7f97c2"/>
+  <polygon points="610,250 700,315 650,340 562,275" fill="#a2b5da"/>
+  <rect x="520" y="340" width="180" height="28" fill="#7a8cab"/>
+  <text x="24" y="56" font-family="Arial" font-size="32" fill="#1f3f7a">Construction Site Concrete Pouring</text>
+</svg>

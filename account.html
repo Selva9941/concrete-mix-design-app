@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Account</title>
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-protected="true" class="page-bg page-account">
+  <div class="app-shell">
+    <aside class="sidebar">
+      <h4>Concrete Mix App</h4>
+      <nav class="nav flex-column">
+        <a class="nav-link" href="dashboard.html">Dashboard</a>
+        <a class="nav-link" href="new_mix.html">New Mix Design</a>
+        <a class="nav-link" href="report.html">Report</a>
+        <a class="nav-link" href="saved_designs.html">Saved Designs</a>
+        <a class="nav-link" href="settings.html">Settings</a>
+        <a class="nav-link" href="help.html">Help & Support</a>
+        <a class="nav-link logout-link" href="#">Logout</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header d-flex flex-wrap justify-content-between align-items-center">
+        <h5 class="mb-0">Account</h5>
+        <div class="header-actions">
+          <a class="btn btn-sm btn-primary" href="dashboard.html">Home</a>
+          <a class="btn btn-sm btn-outline-primary" href="index.html">Login</a>
+          <button class="btn btn-sm btn-outline-secondary btn-back">Back</button>
+          <a class="btn btn-sm btn-outline-dark" href="account.html">Account</a>
+        </div>
+      </header>
+
+      <section class="content-area">
+        <div class="section-card card p-4">
+          <h5 class="mb-3">User Account</h5>
+          <p><strong>Email:</strong> <span class="user-email"></span></p>
+          <p class="text-muted mb-0">Profile details can be updated in the Settings page.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
